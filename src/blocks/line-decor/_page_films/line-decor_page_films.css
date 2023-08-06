@@ -1,0 +1,15 @@
+.line-decor_page_films {
+    max-width: 1140px;
+    width: 92vw;
+    align-self: center;
+    margin-top: 23px;
+    margin-bottom: 64px;
+    background-color: #424242;
+  }
+  
+  @media (max-width: 556px) {
+    .line-decor_page_films {
+      margin-top: 27px;
+      margin-bottom: 34px;
+    }
+  }

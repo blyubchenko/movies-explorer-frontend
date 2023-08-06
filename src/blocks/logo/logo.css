@@ -1,0 +1,9 @@
+.logo {
+    flex-shrink: 0;
+    background-image: url(../../images/logo-min.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 38px;
+    width: 38px;
+  }

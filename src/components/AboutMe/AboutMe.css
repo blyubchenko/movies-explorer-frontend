@@ -1,0 +1,144 @@
+  .about-me {
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 320px;
+    width: 100%;
+    padding: 0 30px 0 30px;
+  }
+  
+  @media (max-width: 768px) {
+    .about-me {
+      padding: 0px 50px;
+    }
+  }
+  
+  @media (max-width: 556px) {
+    .about-me {
+      padding: 0px 15px;
+    }
+  }
+  
+  .about-me__title {
+    margin: 0;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+  }
+  
+  @media (max-width: 768px) {
+    .about-me__title {
+      font-size: 40px;
+      line-height: 40px;
+      letter-spacing: -1.6px;
+    }
+  }
+  
+  @media (max-width: 556px) {
+    .about-me__title {
+      margin-top: 38px;
+      font-size: 30px;
+      letter-spacing: -1.2px;
+    }
+  }
+  
+  .about-me__wrapper {
+    margin-top: 66px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 556px) {
+    .about-me__wrapper {
+      flex-wrap: wrap;
+      flex-direction: column-reverse;
+      align-items: center;
+      margin-top: 60px;
+    }
+  }
+  
+  .about-me__subtitle {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .about-me__subtitle {
+      font-size: 12px;
+      padding: 6px 0 0px;
+    }
+  }
+  
+  @media (max-width: 556px) {
+    .about-me__subtitle {
+      font-size: 11px;
+      line-height: 16px;
+    }
+  }
+  
+  .about-me__paragraph {
+    margin-top: 26px;
+    max-width: 600px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  
+  @media (max-width: 768px) {
+    .about-me__paragraph {
+      margin-top: 20px;
+      line-height: 18px;
+    }
+  }
+  
+  @media (max-width: 556px) {
+    .about-me__paragraph {
+      font-size: 11px;
+      line-height: 16px;
+    }
+  }
+  
+  .about-me__link {
+    margin-top: 100px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .about-me__link:hover {
+    transition: 0.3s ease-out 0.1s;
+    opacity: 0.7;
+  }
+  
+  @media (max-width: 768px) {
+    .about-me__link {
+      margin-top: 90px;
+    }
+  }
+  
+  @media (max-width: 556px) {
+    .about-me__link {
+      margin-top: 42px;
+    }
+  }
+  
+  .about-me__image {
+    width: 270px;
+    height: 327px;
+    border-radius: 10px;
+    background-color: #303030;
+    object-fit: cover;
+  }
+  
+  @media (max-width: 768px) {
+    .about-me__image {
+      width: 255px;
+      height: 307px;
+    }
+  }
+  
+  @media (max-width: 556px) {
+    .about-me__image {
+      width: 292px;
+      height: 352px;
+    }
+  }

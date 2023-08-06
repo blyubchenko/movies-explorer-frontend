@@ -1,0 +1,27 @@
+.form__label {
+    color: #8b8b8b;
+    font-size: 10px;
+  }
+  
+  .form__input {
+    padding: 0 0 4px 0;
+    min-height: 28px;
+    font-size: 14px;
+    border-bottom: 1px solid #424242;
+  }
+  .input-error {
+    visibility: hidden;
+    min-height: 19px;
+    padding-top: 6px;
+    display: block;
+  }
+  
+  .input-error_active {
+    visibility: visible;
+    font-size: 10px;
+    color: #ee3465;
+  }
+
+  .form__input_password {
+    color: #ee3465;
+  }

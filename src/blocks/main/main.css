@@ -1,0 +1,23 @@
+.main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 110px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1280px;
+  }
+  
+  @media (max-width: 768px) {
+    .main {
+      gap: 90px;
+    }
+  }
+  
+  @media (max-width: 556px) {
+    .main {
+      gap: 70px;
+      margin-top: 14px;
+    }
+  }
+  
