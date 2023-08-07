@@ -56,7 +56,7 @@ function Profile({ isEditMode, onEditProfile, valueInput }) {
       </form>
       <Link
         to="/"
-        className={isEditMode ? "link__signout_hidden" : "link link__signout"}
+        className={isEditMode ? "link_signout_hidden" : "link link_signout"}
       >
         Выйти из аккаунта
       </Link>

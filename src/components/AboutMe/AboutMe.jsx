@@ -26,6 +26,7 @@ function AboutMe() {
             <a
               href="https://github.com/blyubchenko"
               className="about-me__link link"
+              target="_blank"
             >
               Github
             </a>

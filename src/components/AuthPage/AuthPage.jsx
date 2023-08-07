@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function AuthPage({ children, link, isValid }) {
   return (
-    <div className="main main_page_forms page__container_position_center page__container_page_forms section_size_mini">
+    <div className="main main_page_forms content-center content-center_page_forms section section_size_mini">
       <div className="header header_page_forms">
         <Link to="/" className="logo" />
       </div>
@@ -18,11 +18,11 @@ function AuthPage({ children, link, isValid }) {
           {link === "/signup" ? "Зарегистрироваться" : "Войти"}
         </button>
       </form>
-      <p className="form__text">
+      <p className="form-text">
         {link === "/signup"
           ? "Уже зарегистрированы?"
           : "Ещё не зарегистрированы?"}
-        <Link to={link} className="link form__link">
+        <Link to={link} className="link link_form">
           {link === "/signup" ? "Войти" : "Регистрация"}
         </Link>
       </p>

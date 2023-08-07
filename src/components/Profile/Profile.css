@@ -11,7 +11,7 @@
 
 .main_page_profil {
   align-items: center;
-  height: calc(100vh - 74px);
+  height: 100%;
   margin: 0 auto;
   gap: 0;
 }
@@ -54,6 +54,7 @@
 
 .profil__button {
   flex-shrink: 0;
+  margin-top: 28vh;
   cursor: pointer;
   color: #fff;
   font-size: 13px;
@@ -66,20 +67,19 @@
   opacity: 0.7;
 }
 
-.link__signout {
-  margin-bottom: 10vh;
+.link_signout {
   margin-top: 17px;
   color: #ee3465;
   font-size: 13px;
   font-weight: 500;
 }
 
-.link__signout_hidden {
+.link_signout_hidden {
   visibility: hidden;
   height: 11vh;
 }
 
-.link__signout:hover {
+.link_signout:hover {
   transition: 0.3s ease-out 0.1s;
   opacity: 0.7;
 }
@@ -91,11 +91,11 @@
   .form__title {
     margin: 0 0 85px 0;
   }
-  .link__signout {
-    margin-bottom: 26.2vh;
-  }
-  .link__signout_hidden {
+  .link_signout_hidden {
     height: 27vh;
+  }
+  .profil__button{
+    margin-top: 18.3vh;
   }
 }
 
@@ -110,15 +110,13 @@
   }
 
   .profil__button {
+    margin-top: 45.5vh;
     font-size: 12px;
   }
-  .link__signout {
+  .link_signout {
     font-size: 12px;
   }
-  .link__signout {
-    margin-bottom: 5vh;
-  }
-  .link__signout_hidden {
+  .link_signout_hidden {
     height: 6vh;
   }
 }

@@ -1,11 +1,6 @@
-.section_size_narrow {
-    max-width: 1140px;
-  }
-
   .footer {
     flex-shrink: 0;
     width: 92vw;
-    box-sizing: border-box;
   }
   
   .footer__text {
@@ -53,7 +48,6 @@
   
   .footer__wrapper {
     margin-top: 20px;
-    padding-bottom: 20px;
     display: flex;
     justify-content: space-between;
   }

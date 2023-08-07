@@ -23,7 +23,7 @@ function InputForm({ title, type, placeholderText, classInput, classLabel, name,
       className={`input-error ${
         !isValid && "input-error_active"
       }`}
-      id="name-error">
+      id={`${name}-error`}>
         {error}
       </span>
     </>

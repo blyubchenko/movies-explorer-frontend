@@ -13,7 +13,7 @@ import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [profile, setProfile] = useState({
     name: 'Виталий', 
     email: 'pochta@yandex.ru'

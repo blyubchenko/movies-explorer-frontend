@@ -9,14 +9,14 @@ function Navigation({ loggedIn }) {
   return (
     <>
       {loggedIn ? (
-        <div className="menu">
+        <div className="burger">
           <input
-            className="burger__checkbox"
+            className="burger__input"
             id="burger-check"
             type="checkbox"
           />
-          <label for="burger-check" className="burger">
-            <div className="burger__line"></div>
+          <label for="burger-check" className="burger__label">
+            <span className="burger__line"></span>
           </label>
           <div className="overlay"></div>
           <nav className="navbar">

@@ -2,6 +2,9 @@
   background-color: #202020;
   font-family: "inter", Arial, sans-sarif;
   color: #fff;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 20px;
  }
 
 .page__container {
@@ -43,11 +46,6 @@
 
 .footer_page_films {
   margin-top: 160px;
-}
-
-.page__container_404 {
-  padding-bottom: 30px;
-  box-sizing: border-box;
 }
 
 .not-found {
