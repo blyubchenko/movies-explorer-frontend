@@ -1,0 +1,21 @@
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 32px;
+    column-gap: 30px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 768px) {
+    .cards {
+      column-gap: 24px;
+      row-gap: 35px;
+    }
+  }
+  
+  @media (max-width: 556px) {
+    .cards {
+      row-gap: 15px;
+    }
+  }

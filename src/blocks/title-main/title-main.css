@@ -1,0 +1,14 @@
+.title-main {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    margin: 0;
+  }
+  
+  @media (max-width: 320px) {
+    .title-main {
+      font-size: 18px;
+      letter-spacing: -0.72px;
+    }
+  }

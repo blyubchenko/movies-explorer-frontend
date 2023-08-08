@@ -1,0 +1,9 @@
+  .main_page_saved{
+    margin-bottom: 309px;
+  }
+
+  @media (max-width: 768px) {
+    .main_page_saved {
+        margin-bottom: 249px;
+    }
+  }
