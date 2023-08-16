@@ -6,7 +6,7 @@ function NotFoundPage() {
   const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate(-1); 
+    navigate("/"); 
   }
   return (
     <div class="page__container page__container_404">

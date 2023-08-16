@@ -3,12 +3,12 @@
   }
   
   .checkbox__input:checked ~ .visible-checkbox {
-    background-color: #343434;
+    background-color: #3ddc84;
   }
   
   .checkbox__input:checked ~ .visible-checkbox::before {
-    background-color: #a0a0a0;
-    left: 2px;
+    background-color: #fff;
+    left: 18px;
   }
   
   .checkbox {
@@ -37,7 +37,7 @@
     display: block;
     width: 36px;
     height: 20px;
-    background-color: #3ddc84;
+    background-color: #343434;
     border-radius: 20px;
     transition: 0.3s ease-in 0.1s;
   }
@@ -46,10 +46,10 @@
     content: "";
     position: absolute;
     top: 2px;
-    right: 2px;
+    left: 2px;
     height: 16px;
     width: 16px;
-    background-color: #fff;
+    background-color: #a0a0a0;
     border-radius: 50%;
     transition: 0.3s ease-in 0.1s;
   }

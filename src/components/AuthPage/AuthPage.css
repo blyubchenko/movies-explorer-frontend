@@ -26,15 +26,6 @@
     margin-top: 0;
   }
   
-  .form__wrapper {
-    flex: 1;
-    margin: 0;
-    padding: 0;
-    border: none;
-    display: flex;
-    flex-direction: column;
-  }
-  
   .form__button {
     cursor: pointer;
     flex-shrink: 0;
