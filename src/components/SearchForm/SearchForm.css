@@ -18,6 +18,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    position: relative;
   }
   
   @media (max-width: 556px) {

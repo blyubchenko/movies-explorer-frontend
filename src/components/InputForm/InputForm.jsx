@@ -1,6 +1,20 @@
 import "./InputForm.css";
 
-function InputForm({ title, type, placeholderText, classInput, classLabel, name, value, onChange, error, isValid, inputLength, onDisabled }) {
+function InputForm({
+  title,
+  type,
+  placeholderText,
+  classInput,
+  classLabel,
+  name,
+  value,
+  onChange,
+  error,
+  isValid,
+  inputLength,
+  onDisabled,
+  pattern,
+}) {
   return (
     <>
       <label htmlFor={type} className={classLabel ? classLabel : "form__label"}>
@@ -18,12 +32,12 @@ function InputForm({ title, type, placeholderText, classInput, classLabel, name,
         minLength={inputLength?.[0]}
         maxLength={inputLength?.[1]}
         disabled={onDisabled}
+        pattern={pattern}
       />
-            <span 
-      className={`input-error ${
-        !isValid && "input-error_active"
-      }`}
-      id={`${name}-error`}>
+      <span
+        className={`input-error ${!isValid && "input-error_active"}`}
+        id={`${name}-error`}
+      >
         {error}
       </span>
     </>

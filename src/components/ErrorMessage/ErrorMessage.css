@@ -1,0 +1,10 @@
+.error {
+  display: none;
+  font-size: 14px;
+  color: #ee3465;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.error_active{
+  display: block;
+}

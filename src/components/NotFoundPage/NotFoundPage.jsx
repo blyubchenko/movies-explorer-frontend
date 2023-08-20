@@ -9,11 +9,11 @@ function NotFoundPage() {
     navigate(-1); 
   }
   return (
-    <div class="page__container page__container_404">
-      <p class="not-found">
-        404<span class="not-found__text">Страница не найдена</span>
+    <div className="page__container page__container_404">
+      <p className="not-found">
+        404<span className="not-found__text">Страница не найдена</span>
       </p>
-      <button  class="link_not-found link" onClick={handleGoBack}>
+      <button  className="link_not-found link" onClick={handleGoBack}>
         Назад
       </button>
     </div>

@@ -15,7 +15,7 @@ function Navigation({ loggedIn }) {
             id="burger-check"
             type="checkbox"
           />
-          <label for="burger-check" className="burger__label">
+          <label htmlFor="burger-check" className="burger__label">
             <span className="burger__line"></span>
           </label>
           <div className="overlay"></div>
@@ -59,10 +59,10 @@ function Navigation({ loggedIn }) {
         </div>
       ) : (
         <div className="header__links">
-          <Link to="/signin" className="header__link-registration link">
+          <Link to="/signup" className="header__link-registration link">
             Регистрация
           </Link>
-          <Link to="/signup" className="header__link-enter link">
+          <Link to="/signin" className="header__link-enter link">
             Войти
           </Link>
         </div>

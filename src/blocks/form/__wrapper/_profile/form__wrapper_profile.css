@@ -1,0 +1,15 @@
+.form__wrapper_profil{
+    margin-bottom: 28vh;
+  }
+
+  @media (max-width: 768px) {
+    .form__wrapper_profil{
+      margin-top: 18.3vh;
+    }
+  }
+
+  @media (max-width: 556px) {
+    .form__wrapper_profil{
+      margin-top: 45.5vh;
+    }
+  }
