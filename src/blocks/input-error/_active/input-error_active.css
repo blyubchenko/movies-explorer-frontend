@@ -1,0 +1,5 @@
+.input-error_active {
+    visibility: visible;
+    font-size: 10px;
+    color: #ee3465;
+  }

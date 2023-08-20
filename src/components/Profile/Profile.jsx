@@ -6,6 +6,8 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Preloader from "../Preloader/Preloader";
 import React, { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import Header from "../Header/Header";
+import { emailRegex } from "../../utils/constants";
 
 function Profile({
   handleUpdateUser,
@@ -13,8 +15,10 @@ function Profile({
   isError,
   isErrorMessage,
   isLoadingResults,
+  loggedIn,
 }) {
-  const [isSuccessNotificationVisible, setSuccessNotificationVisible] = useState(false);
+  const [isSuccessNotificationVisible, setSuccessNotificationVisible] =
+    useState(false);
   const [isEditMode, setEditMode] = useState(false);
   const currentUser = useContext(CurrentUserContext);
 
@@ -37,11 +41,11 @@ function Profile({
     handleUpdateUser({
       name: values.name,
       email: values.email,
-    })
+    });
     setSuccessNotificationVisible(true);
-      setTimeout(() => {
-        setSuccessNotificationVisible(false);
-      }, 3000);
+    setTimeout(() => {
+      setSuccessNotificationVisible(false);
+    }, 3000);
   }
 
   useEffect(() => {
@@ -53,74 +57,83 @@ function Profile({
   }, [currentUser, resetForm, setValues]);
 
   return (
-    <div className="main main_page_profil">
-      {isLoadingResults && <Preloader />}
-      <form className="form profil" onSubmit={handleSubmit}>
-        <h1 className="form__title form__title_page_profil">
-          Привет, {currentUser.name}!
-        </h1>
+    <>
+      <Header loggedIn={loggedIn} />
+      <div className="main main_page_profil">
+        {isLoadingResults && <Preloader />}
+        <form className="form profil" onSubmit={handleSubmit}>
+          <h1 className="form__title form__title_page_profil">
+            Привет, {currentUser.name}!
+          </h1>
 
-        <fieldset className="form__wrapper form__wrapper_profil">
-          <InputForm
-            title="Иия"
-            type="text"
-            placeholderText="Введите имя"
-            classInput="profil__input"
-            classLabel="profil__label"
-            name="name"
-            value={values.name || ''}
-            onChange={handleChange}
-            error={errors.name}
-            inputLength={[2, 30]}
-            onDisabled={!isEditMode && !isError}
-          />
-          <div className="line-decor line-decor_page_profil"></div>
-          <InputForm
-            title="E-mail"
-            type="email"
-            placeholderText="Введите email"
-            classInput="profil__input"
-            classLabel="profil__label"
-            name="email"
-            value={values.email || ''}
-            onChange={handleChange}
-            error={errors.email}
-            isValid={isValid}
-            onDisabled={!isEditMode && !isError}
-          />
-        </fieldset>
-        {!isError ?
-        isSuccessNotificationVisible && <span className="notification">Профиль успешно сохранен!</span>
-        :
-        <ErrorMessage isError={isError} isErrorMessage={isErrorMessage} />}
-        {!isEditMode && !isError ? (
-          <button
-            type="button"
-            className="profil__button"
-            onClick={handleEditProfileClick}
-          >
-            Редактировать
-          </button>
-        ) : (
-          <button
-            type="submit"
-            disabled={!isValid || (isEditMode && !hasChanges())}
-            className={`form__button ${
-              (!isValid || !hasChanges()) && "form__button_inactive"
-            }`}
-            onClick={handleSubmit}
-          >
-            Сохранить
-          </button>
-        )}
-      </form>
-      <Link
-        onClick={logout}
-        className={isEditMode || isError ? "link_signout_hidden" : "link link_signout"}
-      >
-        Выйти из аккаунта
-      </Link>
-    </div>
+          <fieldset className="form__wrapper form__wrapper_profil">
+            <InputForm
+              title="Иия"
+              type="text"
+              placeholderText="Введите имя"
+              classInput="profil__input"
+              classLabel="profil__label"
+              name="name"
+              value={values.name || ""}
+              onChange={handleChange}
+              error={errors.name}
+              inputLength={[2, 30]}
+              onDisabled={!isEditMode && !isError}
+            />
+            <div className="line-decor line-decor_page_profil"></div>
+            <InputForm
+              title="E-mail"
+              type="email"
+              placeholderText="Введите email"
+              classInput="profil__input"
+              classLabel="profil__label"
+              name="email"
+              value={values.email || ""}
+              onChange={handleChange}
+              error={errors.email}
+              isValid={isValid}
+              pattern={emailRegex}
+              onDisabled={!isEditMode && !isError}
+            />
+          </fieldset>
+          {!isError ? (
+            isSuccessNotificationVisible && (
+              <span className="notification">Профиль успешно сохранен!</span>
+            )
+          ) : (
+            <ErrorMessage isError={isError} isErrorMessage={isErrorMessage} />
+          )}
+          {!isEditMode && !isError ? (
+            <button
+              type="button"
+              className="profil__button"
+              onClick={handleEditProfileClick}
+            >
+              Редактировать
+            </button>
+          ) : (
+            <button
+              type="submit"
+              disabled={!isValid || (isEditMode && !hasChanges())}
+              className={`form__button ${
+                (!isValid || !hasChanges()) && "form__button_inactive"
+              }`}
+              onClick={handleSubmit}
+            >
+              Сохранить
+            </button>
+          )}
+        </form>
+        <Link
+          onClick={logout}
+          className={
+            isEditMode || isError ? "link_signout_hidden" : "link link_signout"
+          }
+        >
+          Выйти из аккаунта
+        </Link>
+      </div>
+    </>
   );
 }
 

@@ -1,0 +1,6 @@
+.input-error {
+    visibility: hidden;
+    min-height: 19px;
+    padding-top: 6px;
+    display: block;
+  }

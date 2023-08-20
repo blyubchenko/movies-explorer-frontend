@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.movies.blyubchenko.nomoredomains.xyz";
+export const BASE_URL = "http://localhost:3001";//https://api.movies.blyubchenko.nomoredomains.xyz
 
 function inspectResponse(response) {
   if (response.ok) {

@@ -1,8 +1,6 @@
 import "./App.css";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
@@ -29,13 +27,9 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-      getUserData();
-      getSaveMovies();
-  }, []);
-
-  useEffect(() => {
-    setFilteredSaveMovies(saveMovies);
-  }, [saveMovies]);
+    getUserData();
+    getSaveMovies();
+  }, [loggedIn]);
 
   function getUserData() {
     MainApi.getUserData()
@@ -46,8 +40,7 @@ function App() {
           name: userName,
           email: userEmail,
         }));
-        setLoggedIn(true);
-        navigate("/movies", { replace: true });
+        handleLogin();
       })
       .catch((err) => {
         console.log(err);
@@ -56,17 +49,20 @@ function App() {
       });
   }
 
-  function handleLogin(e) {
-    e.preventDefault();
+  const handleLogin = () => {
+    if (!localStorage.getItem("isLoggedIn")) {
+      localStorage.setItem("isLoggedIn", true);
+    }
     setLoggedIn(true);
-  }
+  };
 
-  function register(name, email, password) {
+  function register(name, email, password, setFormValue) {
     setLoadingResults(true);
     MainApi.register(name, email, password)
       .then((res) => {
+        login(email, password, setFormValue);
         setError(false);
-        navigate("/signin");
+        navigate("/signin", { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -78,16 +74,17 @@ function App() {
       });
   }
 
-  function login(email, password, event, setFormValue) {
+  function login(email, password, setFormValue) {
     setLoadingResults(true);
     MainApi.login(email, password)
       .then((data) => {
         if (data.message === "Вход выполнен") {
           setFormValue({ email: "", password: "" });
-          handleLogin(event);
+          handleLogin();
           getUserData();
           getSaveMovies();
           setError(false);
+          navigate("/movies", { replace: true });
         }
       })
       .catch((err) => {
@@ -105,9 +102,9 @@ function App() {
     MainApi.logout()
       .then((data) => {
         if (data.message === "Выход выполнен") {
-          localStorage.removeItem("searchQuery");
-          localStorage.removeItem("chekedShort");
+          localStorage.clear();
           setSaveMovies([]);
+          setFilteredSaveMovies([]);
           setСurrentUser({});
           setLoggedIn(false);
           navigate("/");
@@ -160,12 +157,15 @@ function App() {
       });
   }
 
+  function filterDeletedMovies(movieId, movies) {
+    return movies.filter((item) => movieId !== item._id);
+  }
+
   function handleSeveMovieDelete(movieId) {
     MainApi.deleteMovie(movieId)
       .then(() => {
-        setSaveMovies((saveMovies) =>
-          saveMovies.filter((item) => movieId !== item._id)
-        );
+        setSaveMovies(filterDeletedMovies(movieId, saveMovies));
+        setFilteredSaveMovies(filterDeletedMovies(movieId, filteredSaveMovies));
       })
       .catch((err) => {
         console.log(err);
@@ -177,96 +177,87 @@ function App() {
       <div className="page">
         <Routes>
           <Route
-            path="/"
+            path="/signup"
             element={
-              <div className="page__container">
-                <Header loggedIn={loggedIn} />
-                <Main />
-                <Footer />
-              </div>
+              loggedIn ? (
+                <Navigate to="/" />
+              ) : (
+                <Register
+                  setError={setError}
+                  setErrorMessage={setErrorMessage}
+                  isError={isError}
+                  isErrorMessage={isErrorMessage}
+                  onRegister={register}
+                  onLogin={login}
+                  isLoadingResults={isLoadingResults}
+                />
+              )
+            }
+          />
+
+          <Route
+            path="/signin"
+            element={
+              loggedIn ? (
+                <Navigate to="/" />
+              ) : (
+                <Login
+                  setError={setError}
+                  setErrorMessage={setErrorMessage}
+                  onLogin={login}
+                  isError={isError}
+                  isErrorMessage={isErrorMessage}
+                  isLoadingResults={isLoadingResults}
+                />
+              )
             }
           />
 
           <Route
             path="/movies"
             element={
-              <div className="page__container">
-                <Header loggedIn={loggedIn} />
-                <ProtectedRouteElement
-                  loggedIn={loggedIn}
-                  element={Movies}
-                  saveMovies={saveMovies}
-                  handleSeveMovieDelete={handleSeveMovieDelete}
-                  handleSeveMovie={handleSeveMovie}
-                  isLoadingResults={isLoadingResults}
-                  setLoadingResults={setLoadingResults}
-                />
-                <Footer />
-              </div>
+              <ProtectedRouteElement
+                loggedIn={loggedIn}
+                element={Movies}
+                saveMovies={saveMovies}
+                handleSeveMovieDelete={handleSeveMovieDelete}
+                handleSeveMovie={handleSeveMovie}
+                isLoadingResults={isLoadingResults}
+                setLoadingResults={setLoadingResults}
+              />
             }
           />
+
+          <Route path="/" element={<Main loggedIn={loggedIn} />} />
 
           <Route
             path="/saved-movies"
             element={
-              <div className="page__container">
-                <Header loggedIn={loggedIn} />
-                <ProtectedRouteElement
-                  loggedIn={loggedIn}
-                  isLoadingResults={isLoadingResults}
-                  element={SavedMovies}
-                  saveMovies={saveMovies}
-                  filteredSaveMovies={filteredSaveMovies}
-                  setFilteredSaveMovies={setFilteredSaveMovies}
-                  setSaveMovies={setSaveMovies}
-                  handleSeveMovieDelete={handleSeveMovieDelete}
-                />
-                <Footer />
-              </div>
+              <ProtectedRouteElement
+                loggedIn={loggedIn}
+                isLoadingResults={isLoadingResults}
+                element={SavedMovies}
+                saveMovies={saveMovies}
+                filteredSaveMovies={filteredSaveMovies}
+                setFilteredSaveMovies={setFilteredSaveMovies}
+                setSaveMovies={setSaveMovies}
+                handleSeveMovieDelete={handleSeveMovieDelete}
+              />
             }
           />
 
           <Route
             path="/profile"
             element={
-              <>
-                <Header loggedIn={loggedIn} />
-                <ProtectedRouteElement
-                  loggedIn={loggedIn}
-                  element={Profile}
-                  isError={isError}
-                  isErrorMessage={isErrorMessage}
-                  logout={logout}
-                  handleUpdateUser={handleUpdateUser}
-                  isLoadingResults={isLoadingResults}
-                />
-              </>
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <div className="page__container">
-                <Register
-                  isError={isError}
-                  isErrorMessage={isErrorMessage}
-                  onRegister={register}
-                  isLoadingResults={isLoadingResults}
-                />
-              </div>
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              <div className="page__container">
-                <Login
-                  onLogin={login}
-                  isError={isError}
-                  isErrorMessage={isErrorMessage}
-                  isLoadingResults={isLoadingResults}
-                />
-              </div>
+              <ProtectedRouteElement
+                loggedIn={loggedIn}
+                element={Profile}
+                isError={isError}
+                isErrorMessage={isErrorMessage}
+                logout={logout}
+                handleUpdateUser={handleUpdateUser}
+                isLoadingResults={isLoadingResults}
+              />
             }
           />
 

@@ -20,3 +20,6 @@
 @import url(./blocks/form/__wrapper/form__wrapper.css);
 @import url(./blocks/form/__wrapper/_profile/form__wrapper_profile.css);
 @import url(./blocks/notification/notification.css);
+@import url(./blocks/input-error/input-error.css);
+@import url(./blocks/input-error/_active/input-error_active.css);
+@import url(./blocks/input-error/_movieSearch/input-error_movieSearch.css);

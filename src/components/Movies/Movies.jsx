@@ -4,6 +4,8 @@ import Preloader from "../Preloader/Preloader";
 import apiMovies from "../../utils/MoviesApi";
 import { useEffect, useState } from "react";
 import { filterMovies, convertMovie } from "../../utils/utils";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 
 function Movies({
   isLoadingResults,
@@ -11,6 +13,7 @@ function Movies({
   handleSeveMovie,
   handleSeveMovieDelete,
   saveMovies,
+  loggedIn,
 }) {
   const [isMovies, setMovies] = useState([]);
   const [isChekedShort, setChekedShort] = useState(false);
@@ -27,7 +30,6 @@ function Movies({
 
   function handleSubmit(value) {
     localStorage.setItem("searchQuery", value);
-    localStorage.setItem("chekedShort", isChekedShort);
     if (localStorage.getItem("allFilms")) {
       filteringMovies(value);
     } else {
@@ -48,8 +50,8 @@ function Movies({
   }
 
   useEffect(() => {
-    const searchQuery = localStorage.getItem("searchQuery");
-    const chekedShort = localStorage.getItem("chekedShort") === "true";
+    let searchQuery = localStorage.getItem("searchQuery");
+    let chekedShort = localStorage.getItem("chekedShort") === "true";
     if (chekedShort) {
       setChekedShort(chekedShort);
     }
@@ -59,23 +61,24 @@ function Movies({
   }, []);
 
   function handelChekedShort() {
-    setChekedShort(!isChekedShort)
-    if (isMovies.length > 0) {
-      filteringMovies(localStorage.getItem("searchQuery"), !isChekedShort);
-    }
+    filteringMovies(localStorage.getItem("searchQuery"), !isChekedShort);
+    setChekedShort(!isChekedShort);
+    localStorage.setItem("chekedShort", !isChekedShort);
   }
 
   return (
-    <main className="main main_page_films">
-      <SearchForm
-        onSubmit={handleSubmit}
-        onChekedShort={isChekedShort}
-        handelChekedShort={handelChekedShort}
-      />
-      <div className="line-decor line-decor_page_films"></div>
-      {isLoadingResults ? (
-        <Preloader />
-        ) : isMovies.length === 0 ? (
+    <div className="page__container">
+      <Header loggedIn={loggedIn} />
+      <main className="main main_page_films">
+        <SearchForm
+          onSubmit={handleSubmit}
+          onChekedShort={isChekedShort}
+          handelChekedShort={handelChekedShort}
+        />
+        <div className="line-decor line-decor_page_films"></div>
+        {isLoadingResults ? (
+          <Preloader />
+        ) : isMovies.length === 0 && localStorage.getItem("searchQuery") ? (
           <span className="notification">Ничего не найдено</span>
         ) : (
           <MoviesCardList
@@ -86,7 +89,9 @@ function Movies({
             savedMoviesPage={false}
           />
         )}
-    </main>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
